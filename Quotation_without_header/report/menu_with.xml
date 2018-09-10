@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="action_report_saleorderwith_out"
+            string="Quotation without Unit Rate"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="Quotation_without_header.report_saleorder_with_out_order"
+            name="Quotation_without_header.report_saleorder_with_out_order"
+            print_report_name="('Quotation-%s%s' % (object.name,object.revision_name))"
+            />
+    </data>
+</odoo>
+

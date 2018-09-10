@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- crm_lead_report tree view -->
+    <record id="crm_lead_view_tree" model="ir.ui.view">
+        <field name="name">crm_lead_report.view.tree</field>
+        <field name="model">crm.lead</field>
+        <field name="arch" type="xml">
+            <tree default_order="create_date desc">
+                <field name="user_id"/>
+                <field name="inside_sales"/>
+                <field name="create_date"/>
+                <field name="quotation_name"/>
+                <field name="partner_id"/>
+                <field name="oem2"/>
+                <field name="deal_type"/>
+                <field name="name"/>
+                <field name="crm_pricelist_id"/>
+                <field name="planned_revenue"/>
+                <field name="bottom_line_revenue"/>
+                <field name="opportunity_stages"/>
+                <field name="sales_stages"/>
+                <field name="date_deadline_mnth" string="Expected closing (month)"/>
+                <field name="date_deadline_year" string="Expected closing (year)"/>
+            </tree>
+        </field>
+    </record>
+    <record id="pipeline_report_action" model="ir.actions.act_window">
+		<field name="name">Leads Report</field>
+		<field name="res_model">crm.lead</field>
+		<field name="view_mode">tree,form,kanban,graph,pivot</field>
+        <field name="view_ids" eval="[(5, 0, 0), 
+        (0, 0, {'view_mode': 'tree','view_id': ref('crm_lead_view_tree')}), 
+        (0, 0, {'view_mode': 'form', 'view_id': ref('crm_lead_form_opportunity_inhe')}),                           
+        (0, 0, {'view_mode': 'kanban'})]"/>
+	</record>
+    <menuitem id="pipeline_report_tree_submenu" action="pipeline_report_action" sequence="0" name="Pipeline" parent="sale.menu_sale_report" />
+</odoo>

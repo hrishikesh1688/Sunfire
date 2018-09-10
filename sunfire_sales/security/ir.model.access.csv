@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+,,,,,,,
+"access_test_user_sale_order","access_test_user","model_sale_order","sale_test_user",1,0,0,0
+,,,,,,,
+"access_test_user_sale_order_line","access_test_user","model_sale_order_line","sale_test_user",1,0,0,0

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="account_invoices_menu123"
+            string="Invoices With Unit Rate"
+            model="account.invoice"
+            
+            report_type="qweb-pdf"
+            name="sunfire_invoice.report_invoice_cust"
+            file="sunfire_invoice.report_invoice_cust"
+            attachment_use="False"
+            print_report_name="('Invoice - %s' % (object.number))"
+        />
+        <report
+            id="account_invoices_menu_with_out_rate"
+            string="Invoices Without Unit Rate"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            name="sunfire_invoice.report_invoice_cust_with_out_unit_rate"
+            file="sunfire_invoice.report_invoice_cust_with_out_unit_rate"
+            attachment_use="False"
+            print_report_name="('Invoice - %s' % (object.number))"
+        />
+    </data>
+</odoo>
+

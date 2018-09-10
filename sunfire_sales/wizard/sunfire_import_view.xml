@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <record id="import_product_data_view_123" model="ir.ui.view">
+            <field name="name">import.product.data.view</field>
+            <field name="model">magna.import</field>
+            <field name="arch" type="xml">
+                <form string="Import Firm Details">
+
+                    <group>
+
+                        <h3>
+                        <label string="You are going to import product details"/>
+						</h3>
+						<field name="my_xlsx_file"/>
+                    </group>
+                   
+                    <footer>
+                        <button name="import_csv" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+        
+        <!-- <act_window 
+            id="action_import_product_data_view_123" 
+            name="Import Product Data" 
+            res_model="magna.import"
+            src_model="sale.order" 
+            target="new"
+            view_mode="form"
+            key2="client_action_multi"/> -->
+
+
+    </data>
+</odoo>

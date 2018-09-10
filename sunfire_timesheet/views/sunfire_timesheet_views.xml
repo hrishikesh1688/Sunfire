@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- sunfire_timesheet form view -->
+        <record id="sunfire_timesheet_view_form" model="ir.ui.view">
+            <field name="name">sunfire_timesheet_view_form</field>
+            <field name="model">sunfire.timesheet</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet">
+                    <sheet>
+                        <group>
+                            <field name="timesheet_date"/>
+                        </group>
+                        <div class="table oe-inline table-responsive">
+                            <field name="timesheet_line" mode="tree,kanban">
+                                <tree string="Activities" editable="bottom">
+                                    <field name="category" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+                                    <field name="sub_category" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+                                    <field name="customer" domain="[('customer','=',True),('parent_id','=',False),('user_ids','=',False)]"/>
+                                    <field name="timespent"/>
+                                    <field name="remark"/>
+                                </tree>
+
+                            </field>
+                            <group class="oe_subtotal_footer" colspan="2">
+                                <!-- <field name="total_time_hrs" class="oe_inline"/> -->
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="total_time_hrs" />
+
+                                </div>
+                                <field name="total_time_hrs" nolabel="1" class="oe_inline"/>
+                                <!--<field name="total_time" nolabel="1" class="oe_subtotal_footer_separator"/>
+                                    <field name="total_time_hrs" nolabel="1" class="oe_subtotal_footer_separator"/> -->
+                                <!-- <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="total_time_hrs" />
+                                    </div>
+                                    <field name="total_time_hrs" nolabel="1" class="oe_subtotal_footer_separator"/> -->
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- sunfire_timesheet tree view -->
+        <record id="sunfire_timesheet_view_tree" model="ir.ui.view">
+            <field name="name">sunfire_timesheet.view.tree</field>
+            <field name="model">sunfire.timesheet</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="timesheet_date"/>
+                    <field name="total_time_hrs"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="sunfire_timesheet_report_tree" model="ir.ui.view">
+            <field name="name">Timesheet Report</field>
+            <field name="model">sunfire.timesheet.line</field>
+            <field name="arch" type="xml">
+                <tree string="Timesheet">
+                    <!-- <field name="timesheet_id"/> -->
+                    <field name="category"/>
+                    <field name="rep_date"/>
+                    <field name="sub_category"/>
+                    <field name="customer"/>
+                    <field name="timespent"/>
+                    <field name="remark"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_sunfire_timesheet_grpByUser" model="ir.ui.view">
+            <field name="name">sunfire_timesheet.search.filter</field>
+            <field name="model">sunfire.timesheet</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- <filter name="create_uid"/> -->
+                    <filter name="create_uid" icon="terp-partner" context="{'group_by':'create_uid'}"/> 
+                </search>
+            </field>
+        </record>
+        <record id="view_sunfire_timesheet_search" model="ir.ui.view">
+            <field name="name">sunfire_timesheet.search.expand.filter</field>
+            <field name="model">sunfire.timesheet.line</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- <field name="create_uid"/> -->
+                     <filter name="create_uid" icon="terp-partner" context="{'group_by':'create_uid'}"/>
+                    <filter string="Timesheet &lt;= today" name="timesheet_date_xyz" domain="[('rep_date', '&gt;', datetime.datetime.now()-datetime.timedelta(days=7))]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="timesheet_submenu_action" model="ir.actions.act_window">
+            <field name="name">Timesheet</field>
+            <field name="res_model">sunfire.timesheet</field>
+            <field name="view_mode">tree,form,kanban,graph,pivot</field>
+            <field name="search_view_id" ref="view_sunfire_timesheet_grpByUser"/>
+            <!-- <field name="context">{"search_default_timesheet_date_xyz":0,"search_default_create_uid":0}</field> -->
+            <field name="view_ids" eval="[(5, 0, 0), 
+        (0, 0, {'view_mode': 'tree','view_id': ref('sunfire_timesheet_view_tree')}), 
+        (0, 0, {'view_mode': 'form', 'view_id': ref('sunfire_timesheet_view_form')})]"/>
+        </record>
+        <!-- <record id="sunfire_timesheet_action" model="ir.actions.act_window">
+            <field name="name">Timesheet</field>
+            <field name="res_model">sunfire.timesheet</field>
+            <field name="view_mode">tree,form</field>
+        </record> -->
+        <record id="sunfire_report_action" model="ir.actions.act_window">
+            <field name="name">Timesheet Report</field>
+            <field name="res_model">sunfire.timesheet.line</field>
+            <field name="view_mode">tree,kanban,graph,pivot</field>
+            <field name="view_ids" eval="[(5, 0, 0), 
+        (0, 0, {'view_mode': 'tree','view_id': ref('sunfire_timesheet_report_tree')})]"/>
+            <field name="search_view_id" ref="view_sunfire_timesheet_search"/>
+            <field name="context">{"search_default_timesheet_date_xyz":1,"search_default_create_uid":1}</field>
+        </record>
+        <menuitem id="sunfire_timesheet_master_menu" web_icon="sunfire_timesheet,static/description/icon.png" groups="sunfire_timesheet.group_user" name="Timesheet"/>
+        <menuitem id="sunfire_timesheet_submenu" action="timesheet_submenu_action" name="My Timesheet" parent="sunfire_timesheet_master_menu" groups="sunfire_timesheet.group_user"/>
+        <menuitem id="sunfire_reporting_submenu" action="sunfire_report_action" name="Timesheet Report" parent="sunfire_timesheet_master_menu" groups="sunfire_timesheet.group_manager"/>
+    </data>
+</odoo>

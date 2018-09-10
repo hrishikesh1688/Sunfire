@@ -1,0 +1,61 @@
+/* Adjusting the margin,padding to make it look good. You can remove or change it according to your needs */
+.header{
+    margin-left: -15px;
+    margin-right: -15px;
+    border-top: 1px solid #000;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+/* Adjusting the margin,padding to make it look good. You can remove or change it according to your needs */
+.footer{
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #000;
+
+    /* To Fix Footer overlapping page_border div */
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+
+/* Adjusting the margin,padding to make it look good. You can remove or change it according to your needs */
+.page{
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+/* Magic happens here */
+.page_border{
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    position: fixed;
+    z-index: 9999;
+/* If you don't get full page border, play around with the height */
+    height: 350mm;
+    left: 0px;
+    top:0;
+    width:100%
+}
+
+table {
+    /* background-color: #d9534f; */
+    border: 1px solid #000;
+    font-size: 15px;
+    background-color: #ffffff;;
+    
+}
+/* .o_report_layout_boxed table tbody tr td:last-child {
+    background-color: #ffffff;;
+} */
+
+.o_report_layout_boxed table tbody tr td:last-child {
+    background-color: #ffffff;
+}

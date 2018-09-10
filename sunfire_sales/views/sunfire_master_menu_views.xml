@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--  ================================Delivery Term Start==================================================================== -->
+	<record id="delivery_term_info_form" model="ir.ui.view">
+		<field name="name">Delivery Term</field>
+		<field name="model">delivery_term.info</field>
+		<field name="arch" type="xml">
+			<form string="Delivery Term">
+				<sheet>
+					<group>
+						<field name="delivery_terms"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="delivery_term_info_tree" model="ir.ui.view">
+		<field name="name">Delivery Terms</field>
+		<field name="model">delivery_term.info</field>
+		<field name="arch" type="xml">
+			<tree string="Delivery Term">
+				<field name="delivery_terms"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="delivery_term_info_action" model="ir.actions.act_window">
+		<field name="name">Delivery Term</field>
+		<field name="res_model">delivery_term.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<!--  ================================Delivery Term End========================================================================= -->
+
+	<!--  ================================Delivery Period Start==================================================================== -->
+	<record id="delivery_period_info_form" model="ir.ui.view">
+		<field name="name">Delivery Period</field>
+		<field name="model">delivery_period.info</field>
+		<field name="arch" type="xml">
+			<form string="Delivery Period">
+				<sheet>
+					<group>
+						<field name="delivery_period"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="delivery_period_info_tree" model="ir.ui.view">
+		<field name="name">Delivery Period</field>
+		<field name="model">delivery_period.info</field>
+		<field name="arch" type="xml">
+			<tree string="Delivery Period">
+				<field name="delivery_period"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="delivery_period_info_action" model="ir.actions.act_window">
+		<field name="name">Delivery Period</field>
+		<field name="res_model">delivery_period.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!--  ================================Delivery Period End======================================================================== -->
+
+	<!--  ================================Warranty Start============================================================================= -->
+	<record id="warranty_info_form" model="ir.ui.view">
+		<field name="name">Warranty</field>
+		<field name="model">warranty_information.info</field>
+		<field name="arch" type="xml">
+			<form string="Warranty">
+				<sheet>
+					<group>
+						<field name="warranty"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="warranty_info_tree" model="ir.ui.view">
+		<field name="name">Warranty</field>
+		<field name="model">warranty_information.info</field>
+		<field name="arch" type="xml">
+			<tree string="Warranty">
+				<field name="warranty"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="warranty_info_action" model="ir.actions.act_window">
+		<field name="name">Warranty</field>
+		<field name="res_model">warranty_information.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  ================================Warranty End============================================================================== -->
+
+	<!--  ================================Lead Source Start========================================================================= -->
+	<record id="lead_source_info_form" model="ir.ui.view">
+		<field name="name">Lead Source</field>
+		<field name="model">lead_source_information.info</field>
+		<field name="arch" type="xml">
+			<form string="Lead Source">
+				<sheet>
+					<group>
+						<field name="lead_name"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="lead_source_info_tree" model="ir.ui.view">
+		<field name="name">Lead Source</field>
+		<field name="model">lead_source_information.info</field>
+		<field name="arch" type="xml">
+			<tree string="Lead Source">
+				<field name="lead_name"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="lead_source_information_action" model="ir.actions.act_window">
+		<field name="name">Lead Source</field>
+		<field name="res_model">lead_source_information.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  ================================Lead Source End======================================================================== -->
+	<!--  ================================Transport Modes Start================================================================== -->
+	<record id="transport_mode_info_form" model="ir.ui.view">
+		<field name="name">Transport Modes</field>
+		<field name="model">transport_mode.info</field>
+		<field name="arch" type="xml">
+			<form string="Transport Modes">
+				<sheet>
+					<group>
+						<field name="transport_modes"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="transport_mode_info_tree" model="ir.ui.view">
+		<field name="name">Transport Modes</field>
+		<field name="model">transport_mode.info</field>
+		<field name="arch" type="xml">
+			<tree string="Transport Modes">
+				<field name="transport_modes"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="transport_mode_information_action" model="ir.actions.act_window">
+		<field name="name">Transport Modes</field>
+		<field name="res_model">transport_mode.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Transport Modes End=========================================================  -->
+	<!--  =========================================Line of Business(LOB) Start=========================================================  -->
+	<record id="line_of_business_info_form" model="ir.ui.view">
+		<field name="name">Line of Business</field>
+		<field name="model">line_of_business.info</field>
+		<field name="arch" type="xml">
+			<form string="Line of Business">
+				<sheet>
+					<group>
+						<field name="line_of_business"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="line_of_business_info_tree" model="ir.ui.view">
+		<field name="name">Line of Business</field>
+		<field name="model">line_of_business.info</field>
+		<field name="arch" type="xml">
+			<tree string="Line of Business">
+				<field name="line_of_business"/>
+			</tree>
+		</field>
+	</record>
+	<record id="line_of_business_info_action" model="ir.actions.act_window">
+		<field name="name">Line of Business</field>
+		<field name="res_model">line_of_business.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Line of Business(LOB) End=========================================================  -->
+	<!--  =========================================Installation Terms Start=========================================================  -->
+
+	<record id="installation_terms_info_form" model="ir.ui.view">
+		<field name="name">Installation Terms</field>
+		<field name="model">installation_terms.info</field>
+		<field name="arch" type="xml">
+			<form string="Installation Terms">
+				<sheet>
+					<group>
+						<field name="installation_terms"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="installation_terms_info_tree" model="ir.ui.view">
+		<field name="name">Installation Terms</field>
+		<field name="model">installation_terms.info</field>
+		<field name="arch" type="xml">
+			<tree string="Installation Terms">
+				<field name="installation_terms"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="installation_terms_action" model="ir.actions.act_window">
+		<field name="name">Installation Terms</field>
+		<field name="res_model">installation_terms.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Installation Terms End=========================================================  -->
+	<!--  =========================================Opportunity stages start=========================================================  -->
+	<record id="opportunity_stages_info_form" model="ir.ui.view">
+		<field name="name">Opportunity stages</field>
+		<field name="model">opportunity_stages.info</field>
+		<field name="arch" type="xml">
+			<form string="Opportunity Stages">
+				<sheet>
+					<group>
+						<field name="opportunity_stages"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="opportunity_stages_info_tree" model="ir.ui.view">
+		<field name="name">Opportunity Stages</field>
+		<field name="model">opportunity_stages.info</field>
+		<field name="arch" type="xml">
+			<tree string="Opportunity Stages">
+				<field name="opportunity_stages"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="opportunity_stages_action" model="ir.actions.act_window">
+		<field name="name">Opportunity Stages</field>
+		<field name="res_model">opportunity_stages.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Opportunity stages End=========================================================  -->
+	<!--  =========================================Sales stages start=========================================================  -->
+
+	<record id="sales_stages_info_form" model="ir.ui.view">
+		<field name="name">Sales stages</field>
+		<field name="model">sales_stages.info</field>
+		<field name="arch" type="xml">
+			<form string="Sales Stages">
+				<sheet>
+					<group>
+						<field name="sales_stages"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="sales_stages_info_tree" model="ir.ui.view">
+		<field name="name">Sales Stages</field>
+		<field name="model">sales_stages.info</field>
+		<field name="arch" type="xml">
+			<tree string="Sales Stages">
+				<field name="sales_stages"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="sales_stages_action" model="ir.actions.act_window">
+		<field name="name">Sales Stages</field>
+		<field name="res_model">sales_stages.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Sales stages end=========================================================  -->
+	<!--  =========================================Approval Types start=========================================================  -->
+
+	<record id="approval_types_info_form" model="ir.ui.view">
+		<field name="name">Sales stages</field>
+		<field name="model">approval_types.info</field>
+		<field name="arch" type="xml">
+			<form string="Role Types">
+				<sheet>
+					<group>
+						<field name="approval_type" string="Role"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="approval_types_info_tree" model="ir.ui.view">
+		<field name="name">ApprovalTypes</field>
+		<field name="model">approval_types.info</field>
+		<field name="arch" type="xml">
+			<tree string="Role Types">
+				<field name="approval_type" string="Role"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="approval_types_action" model="ir.actions.act_window">
+		<field name="name">Role Types</field>
+		<field name="res_model">approval_types.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Approval Types end=========================================================  -->
+	<!--  =========================================Approval start=========================================================  -->
+
+	<record id="approval_info_form" model="ir.ui.view">
+		<field name="name">Approval</field>
+		<field name="model">approval.info</field>
+		<field name="arch" type="xml">
+			<form string="Approval">
+				<sheet>
+					<group>
+						<field name="vendor" context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}" domain="[('oem','=',True)]" />
+						<field name="users"/>
+						<field name="approval_type" string="Role Type"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="approval_info_tree" model="ir.ui.view">
+		<field name="name">Approval</field>
+		<field name="model">approval.info</field>
+		<field name="arch" type="xml">
+			<tree string="Approval">
+				<field name="vendor"/>
+				<field name="users"/>
+				<field name="approval_type" string="Role Type"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="approval_action" model="ir.actions.act_window">
+		<field name="name">Approval</field>
+		<field name="res_model">approval.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Approval end=========================================================  -->
+
+	<!--  =========================================Approval start=========================================================  -->
+
+	<record id="deal_type_info_form" model="ir.ui.view">
+		<field name="name">Deal Type</field>
+		<field name="model">deal_type.info</field>
+		<field name="arch" type="xml">
+			<form string="Deal Type">
+				<sheet>
+					<group>
+						<field name="deal_type"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="deal_type_info_tree" model="ir.ui.view">
+		<field name="name">Deal Type</field>
+		<field name="model">deal_type.info</field>
+		<field name="arch" type="xml">
+			<tree string="Deal Type">
+				<field name="deal_type"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="deal_type_action" model="ir.actions.act_window">
+		<field name="name">Deal Type</field>
+		<field name="res_model">deal_type.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Approval end=========================================================  -->
+	<!--  =========================================Approval start=========================================================  -->
+
+	<record id="cust_type_form" model="ir.ui.view">
+		<field name="name">Customer Type</field>
+		<field name="model">cust.type</field>
+		<field name="arch" type="xml">
+			<form string="Cust Type">
+				<sheet>
+					<group>
+						<field name="cust_type" string="Customer Type"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="cust_type_tree" model="ir.ui.view">
+		<field name="name">Customer Type</field>
+		<field name="model">cust.type</field>
+		<field name="arch" type="xml">
+			<tree string="Cust Type">
+				<field name="cust_type"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="cust_type_action" model="ir.actions.act_window">
+		<field name="name">Customer Type</field>
+		<field name="res_model">cust.type</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Approval end=========================================================  -->
+
+	<!--  =========================================Approval start=========================================================  -->
+
+	<record id="upload_type_info" model="ir.ui.view">
+		<field name="name">Upload Type</field>
+		<field name="model">upload_type.info</field>
+		<field name="arch" type="xml">
+			<form string="Upload Type">
+				<sheet>
+					<group>
+						<field name="upload_type" string="Upload Type"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="upload_type_tree" model="ir.ui.view">
+		<field name="name">Upload Type</field>
+		<field name="model">upload_type.info</field>
+		<field name="arch" type="xml">
+			<tree string="Upload Type">
+				<field name="upload_type"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="upload_type_action" model="ir.actions.act_window">
+		<field name="name">Upload Type</field>
+		<field name="res_model">upload_type.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!--  =========================================Approval end=========================================================  -->
+	<!-- =====================================================Master Menu======================================================= -->
+
+	<menuitem id="master_menu" name="Master" groups="sunfire_sales.master_menu_user"/>
+	<menuitem id="delivery_terms_main_submenu" action="delivery_term_info_action" name="Delivery Term" parent="master_menu" />
+	<menuitem id="delivery_period_main_submenu" action="delivery_period_info_action" name="Delivery Period" parent="master_menu" />
+	<menuitem id="warranty_main_submenu" action="warranty_info_action" name="Warranty" parent="master_menu" />
+	<menuitem id="lead_source_submenu" action="lead_source_information_action" name="Lead Source" parent="master_menu" />
+	<menuitem id="transport_mode_submenu" action="transport_mode_information_action" name="Transport Mode" parent="master_menu" />
+	<menuitem id="line_of_business_submenu" action="line_of_business_info_action" name="Line of Business (LOB)" parent="master_menu"/>
+	<menuitem id="installation_terms_submenu" action="installation_terms_action" name="Installation Terms" parent="master_menu"/>
+	<menuitem id="opportunity_stages_submenu" action="opportunity_stages_action" name="Opportunity Stages" parent="master_menu"/>
+	<menuitem id="sales_stages_submenu" action="sales_stages_action" name="Sales stages" parent="master_menu"/>
+	<menuitem id="approval_types_submenu" action="approval_types_action" name="Role Types" parent="master_menu"/>
+	<menuitem id="approval_submenu" action="approval_action" name="Approval" parent="master_menu"/>
+	<menuitem id="deal_type_submenu" action="deal_type_action" name="Deal Type" parent="master_menu"/>
+	<menuitem id="cust_type_submenu" action="cust_type_action" name="Customer Type" parent="master_menu"/>
+	<menuitem id="upload_type_submenu" action="upload_type_action" name="Upload Types" parent="master_menu"/>
+
+	<record id="action_sale_order_approval" model="ir.actions.act_window">
+            <field name="name">Approval</field>
+             <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+			<field name="view_id" ref="sale.view_order_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('order_approve_line.users','=',uid)]</field>
+    </record>
+    <menuitem action="action_sale_order_approval" id="sale_order_approval"
+        name="Approve OPF" parent="crm.crm_menu_pipeline"
+        sequence="10"/>
+
+
+
+		<!-- <record id="action_quotations" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale_order_view_search_inherit_quotation"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation
+                to a Sales Order, then create the Invoice and collect the Payment.
+              </p>
+            </field>
+        </record> -->
+</odoo>

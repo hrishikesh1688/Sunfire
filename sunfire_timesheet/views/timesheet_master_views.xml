@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  =========================================Category Master=========================================================  -->
+
+    <record id="timesheet_category_form" model="ir.ui.view">
+        <field name="name">Category</field>
+        <field name="model">category.info</field>
+        <field name="arch" type="xml">
+            <form string="Category">
+                <sheet>
+                    <group>
+                        <field name="category" string="Timesheet category"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="timesheet_category_tree" model="ir.ui.view">
+        <field name="name">Category</field>
+        <field name="model">category.info</field>
+        <field name="arch" type="xml">
+            <tree string="Cust Type">
+                <field name="category"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_category_action" model="ir.actions.act_window">
+        <field name="name">Category</field>
+        <field name="res_model">category.info</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--  =========================================Category Master=========================================================  -->
+
+    <!--  =========================================SubCategory Master=========================================================  -->
+
+    <record id="timesheet_subcategory_form" model="ir.ui.view">
+        <field name="name">Sub-Category</field>
+        <field name="model">sub_category.info</field>
+        <field name="arch" type="xml">
+            <form string="Sub Category">
+                <sheet>
+                    <group>
+                        <field name="sub_category" string="Subcategory"/>
+                        <field name="category_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="timesheet_category_tree" model="ir.ui.view">
+        <field name="name">Sub Category</field>
+        <field name="model">sub_category.info</field>
+        <field name="arch" type="xml">
+            <tree string="Sub Category">
+                <field name="sub_category"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_subcategory_action" model="ir.actions.act_window">
+        <field name="name">Sub Category</field>
+        <field name="res_model">sub_category.info</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--  =========================================Subcategory Master=========================================================  -->
+	<menuitem id="timesheet_category_submenu" action="timesheet_category_action" name="Timesheet Category" parent="sunfire_sales.master_menu"/>
+	<menuitem id="timesheet_subcategorysubmenu" action="timesheet_subcategory_action" name="Timesheet SubCategory" parent="sunfire_sales.master_menu"/>
+</odoo>

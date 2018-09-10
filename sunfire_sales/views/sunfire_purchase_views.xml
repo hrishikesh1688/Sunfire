@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo> 
+	<!--=========================================purchase.order inherited start===================================================-->
+    
+ <record model="ir.ui.view" id="purchase_order_form">
+    <field name="name">purchase.order.form</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+    	<data>
+	    	<xpath expr="//field[@name='date_approve']" position="after">
+                <field name='delivery_period' options="{'no_quick_create':True,'no_create_edit':True}"/>
+                <field name="warranty" options="{'no_quick_create':False,'no_create_edit':True}"/>
+                <field name="lead_name" options="{'no_quick_create':False,'no_create_edit':True}"/>
+	        </xpath>
+	        
+	     <xpath expr="//div[@name='button_box']" position="attributes">
+       		 	<attribute name="invisible">1</attribute>
+    	</xpath>
+ 	  </data>
+   </field>
+</record>
+ <!--=============purchase.order inherited stop================================================================================-->
+ </odoo> 
+ 	

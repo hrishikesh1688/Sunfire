@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_main_purchase">
+        <t t-call="web.external_layout_boxedPurchase">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <div class="page">
+                <div class="oe_structure" />
+                <center>
+                    <span style="font-size: 30px;font-weight: bold;">
+                        Purchase Order
+                    </span>
+                </center>
+                <div class="row">
+                    <t t-set="soname" t-value="0"/>
+                    <table style="border: 1px solid;" width="100%">
+                        <tr>
+                            <th colspan="10" width="56%;">
+                                To,
+                            </th>
+                            <th colspan="3">
+                                <!-- Order Details -->
+                            </th>
+                        </tr>
+                        <tr>
+                            <td style="border: none;" colspan="10" width="56%;">
+                                <strong t-field="o.partner_id.name"/>
+                            </td>
+                            <td style="border: none;">
+                                Purchase No.
+                            </td>
+                            <td style="border: none;">:</td>
+                            <td style="border: none;">
+                                <strong t-field="o.name"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: none;" colspan="10" width="56%;">
+                                <strong t-field="o.partner_id.street"/>
+                            </td>
+                            <td style="border: none;">
+                                PO Date
+                            </td>
+                            <td style="border: none;">:</td>
+                            <td style="border: none;background-color:white;">
+                                <strong t-field="o.date_order" t-field-options='{"format":"dd-MMM-yyyy"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;" colspan="10" width="56%;">
+                                <t t-if="o.partner_id.street2">
+                                    <strong t-field="o.partner_id.street2"/>
+                                    <br/>
+                                </t>
+                                <strong t-field="o.partner_id.city"/>
+                                -
+                                <strong t-field="o.partner_id.zip"/>
+                            </td>
+                            <td style="border: none;">
+                                OPF No.
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;">
+                                <t t-set="Oa_no" t-value="[]"/>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="Oa_no" t-value="Oa_no+[line.saleorder_line_id.order_id.opf_name]"/>
+                                </t>
+                                <t t-foreach="set(Oa_no)" t-as="iter">
+                                    <b>
+                                        <span t-esc="iter"/>
+                                    </b>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;" colspan="10" width="56%;">
+                                <!-- <strong t-field="o.partner_id.city"/>-
+                                <strong t-field="o.partner_id.zip"/>-->
+                            </td>
+                            <td style="border: none;">
+
+                            </td>
+                            <td style="border: none;"/>
+                            <td style="border: none;background-color:white;">
+
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+
+
+                    <table style="border: none;">
+                        <tr>
+                            <td style="border: none;" width="15%;">
+                                Kind Attention
+                            </td>
+                            <td style="border: none;">
+                                :
+                            </td>
+                            <td style="border: none;">
+                                <strong t-field="o.partner_ref"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="border: none;">With reference to your quotation,we are pleased to place order as per instructions given in this order.</td>
+                        </tr>
+                    </table>
+
+                </div>
+                <br/>
+                <t t-set="tot_amt" t-value="0"/>
+                <t t-foreach="o.purchase_lines_layouted()" t-as="page">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="text-transform: capitalize;text-align: center;">
+                                    <strong>No.</strong>
+                                </th>
+                                <th style="text-transform: capitalize;text-align: center;">
+                                    <strong>HSN/SAC No</strong>
+                                </th>
+                                <th style="text-transform: capitalize;text-align: center;">
+                                    <strong>Part No.</strong>
+                                </th>
+                                <th class="text-center" style="text-transform: capitalize;text-align: center;">
+                                    <strong>Description</strong>
+                                </th>
+                                <th class="text-right" style="text-transform: capitalize;text-align: center;">
+                                    <strong>Qty.</strong>
+                                </th>
+                                <th class="text-right" style="text-transform: capitalize;text-align: center;">
+                                    <strong>Unit Price</strong>
+                                </th>
+                                <th class="text-right" style="text-transform: capitalize;text-align: center;">
+                                    <strong>Total Amount</strong>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="page" t-as="layout_category">
+                                <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
+                                    <t t-if="layout_category['name']!='Uncategorized'">
+                                        <tr class="active">
+                                            <td colspan="7" style="font-weight: bold; border: 1px solid black;text-align: center;">
+                                                <t t-esc="layout_category['name']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                                <tr t-foreach="o.order_line" t-as="line">
+                                    <td class="text-center">
+                                        <span t-esc="line_index + 1" />
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_id.l10n_in_hsn_code"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.product_id.name"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.product_id.description_sale"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.product_qty"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.purchase_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <t t-set="tot_amt" t-value="tot_amt+line.price_subtotal"/>
+                                    </td>
+
+                                </tr>
+                                <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
+                                    <tr class="text-right">
+                                        <td colspan="7" style="font-weight: bold; border: 1px solid black;">
+                                            <strong>Subtotal:</strong>
+                                            <span t-esc="tot_amt" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                            <t t-set="tot_amt" t-value="0"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </t>
+                <div>
+                    <div class="col-xs-4 pull-right">
+                        <table class="table table-condensed">
+                            <tr t-if="o.margin !=0.00 or o.my_discount !=0.00">
+                                <td>
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.margin !=0.00">
+                                <td>
+                                    <strong>Margin</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.margin" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.my_discount !=0.00">
+                                <td>
+                                    <strong>Discount</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.my_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.amount_tax !=0.00 ">
+                                <td>
+                                    <strong>Taxes</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Total</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <p id="total_in_words" class="mb16">
+                            <strong>PO Value Rs.(In Words):</strong>
+                            <span t-field="o.amount_total_words"/>
+                        </p>
+                        <p class="mb16">
+                            <strong>Remark</strong>
+                            <span t-field="o.notes"/>
+                        </p> -->
+                    </div>
+                </div>
+                <br/>
+                <table style="border: none;" width="100%">
+                    <tr>
+                        <td style="border: none;" width="25%;">
+                            PO Value INR.(In Words)
+                        </td>
+                        <td style="border: none;">
+                            :
+                        </td>
+                        <td style="border: none;font-weight:bold;font-size: 16px;">
+                            <span style="font-size: 16px;" t-esc="o.set_amt_in_worlds(o.amount_total)"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="border: none;">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">Remark</td>
+                        <td style="border: none;">:</td>
+                        <td style="border: none;">
+                            <span t-field="o.notes"/>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+                <table style="border: none;">
+                    <tr>
+                        <th style="text-align:left;text-transform: capitalize;" width="25%">
+                            <u>Terms &amp; Conditions</u>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="border: none;">
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Taxes
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.tax_grp"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Delivery Period
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.delivery_period"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Warranty
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.warranty"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Payment Terms
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.payment_term_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Shipping Address
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+
+                            <t t-if="o.other_address_check==False">
+                                <strong t-field="o.po_to_be_placed.street"/>
+                                <strong t-field="o.po_to_be_placed.street2"/>
+                                <strong t-field="o.po_to_be_placed.city"/>
+                                <strong t-field="o.po_to_be_placed.zip"/>
+                            </t>
+                            <t t-if="o.other_address_check==True">
+                                <strong t-field="o.other_address"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Billing Address
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.po_detail_address.street"/>
+                            <strong t-field="o.po_detail_address.street2"/>
+                            <strong t-field="o.po_detail_address.city"/>
+                            <strong t-field="o.po_detail_address.zip"/>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td style="border: none;font-size: 16px;">
+                            Note
+                        </td>
+                        <td style="border: none;width:2%;">:</td>
+                        <td style="border: none;background-color:white;font-size: 16px;">
+                            <strong t-field="o.notes"/>
+                        </td>
+                    </tr> -->
+                </table>
+
+
+                <br/>
+                <table style="border: none;" width="100%">
+                    <tr>
+                        <td colspan="3" style="border: none;">
+                            Note
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">
+                            1.
+                        </td>
+                        <td style="border: none;">
+                            If part delivery is made, then the date of the final delivery of all items will be
+                            <br/>
+                            considered for payment terms.
+                        </td>
+                        <td style="border: none;background-color:white;">Order Prepared By</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">
+                            2.
+                        </td>
+                        <td style="border: none;">
+                            This order is to be treated as cancelled if deliveries should be extended
+                            <br/>
+                            beyond/or prices increased without our prior sanction.Material received there
+                            <br/>
+                            after
+                            will be stored at your risk and cost.
+                        </td>
+                        <td style="border: none;background-color:white;">
+                            <strong t-field="o.create_uid"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">3.</td>
+                        <td style="border: none;">
+                            Bill to And Ship to address as mentioned above.
+                        </td>
+                        <td style="border: none;background-color:white;">
+
+                        </td>
+                    </tr>
+                </table>
+                <table style="border: none;" width="100%">
+                    <tr>
+                        <td style="border: none;background-color:white;text-align: -webkit-right;">
+                            For Sunfire Technologies Pvt. Ltd.
+                            <br/>
+                            <div class="col-xs-4" style="float: right;">
+                                <img src="/Purchase_Report/static/src/img/sign.bmp"/>
+                                <img src="/Purchase_Report/static/src/img/stamp.bmp"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;background-color:white;padding-left: 80%;">Authorised Signatory</td>
+                    </tr>
+                </table>
+
+                <div class="oe_structure"/>
+            </div>
+        </t>
+    </template>
+    <template id="report_purchase_main_menu">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="Purchase_Report.report_main_purchase" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

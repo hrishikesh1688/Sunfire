@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web.external_layout_boxedOpf">
+        <div class="header o_boxed_header">
+            <div class="row mb8">
+                <div class="col-xs-4">
+                    <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"/>
+                    <div>
+                        <strong>Serving Through Innovation &amp; Technology</strong>
+                    </div>
+                </div>
+                <div class="col-xs-8 text-right mb4">
+                    <h4 class="mt0" t-field="doc.company_id.report_header"/>
+                    <div name="company_address" class="mb4" style="text-align: left;">
+                        <ul class="list-inline">
+                            <h3>
+                                <span t-field="doc.company_id.name"/>
+                            </h3>
+                        </ul>
+                        <ul class="list-inline">
+                            <li>
+                                <h3 style="font-size: 18px;">
+                                    <span t-field="doc.company_id.street"/>
+                                    <span t-field="doc.company_id.street2"/>
+                                    <span t-field="doc.company_id.city"/>
+                                    <span>-</span>
+                                    <span t-field="doc.company_id.zip"/>
+                                </h3>
+                            </li>
+                        </ul>
+                        <!-- <ul class="list-inline">
+                            <li t-if="doc.company_id.phone">
+                                Tel:
+                                <span t-field="doc.company_id.phone"/>
+                            </li>
+                            <li t-if="doc.company_id.email">
+                                Mail:
+                                <span t-field="doc.company_id.email"/>
+                            </li>
+                            <li t-if="doc.company_id.website">
+                                Web:
+                                <span t-field="doc.company_id.website"/>
+                            </li>
+                            <li t-if="doc.company_id.vat">
+                                GSTIN:
+                                <span t-field="doc.company_id.vat"/>
+                            </li>
+
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+            <!-- Magic happens here -->
+            <!-- Part of code that makes full page border. If you are overriding the entire header, include this below line in that -->
+            <div class="page_border"/>
+            
+        </div>
+
+        <div class="article o_report_layout_boxed">
+            <t t-raw="0" />
+        </div>
+
+        <div class="footer o_boxed_footer">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li t-if="doc.company_id.phone">
+                        <!-- Tel:
+                        <span t-field="doc.company_id.phone"/> -->
+                    </li>
+                    <li t-if="doc.company_id.email">
+                        <!-- Mail:
+                        <span t-field="doc.company_id.email"/> -->
+                    </li>
+                    <li t-if="doc.company_id.website">
+                        <!-- Web:
+                        <span t-field="doc.company_id.website"/> -->
+                    </li>
+
+                </ul>
+                <div t-field="doc.company_id.report_footer"/>
+                <div>
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

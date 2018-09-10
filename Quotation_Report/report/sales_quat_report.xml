@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_pdf_css" name="Custom Report CSS" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="/Quotation_Report/static/src/css/custom.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+    <template id="web.external_layout_boxedQuoto">
+        <div class="header" style="padding-top: 0px;">
+            <div class="page_border"/>
+        </div>
+        <div class="article o_report_layout_boxed">
+            <div class="page_border"/>
+            <div>
+                <u>
+                    <h3>
+                        <center>Commercial Quotation</center>
+                    </h3>
+                </u>
+                <br/>
+                <div class="col-xs-3">
+                    <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"/>
+                </div>
+                <div class="col-xs-9 text-right mb4">
+                    <h4 class="mt0" t-field="doc.company_id.report_header"/>
+                    <table style="border: none;">
+                        <tr>
+                            <td style="border: none;">
+                                Quotation No.
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.name"/>
+                            </td>
+                        </tr>
+                        <t t-if="doc.revision_name">
+                            <tr>
+                                <td style="border:none;">
+                                    Version No.
+                                </td>
+                                <td style="border:none;width:2%">:</td>
+                                <td style="border: none;background-color:white;width:80%;">
+                                    <strong t-field="doc.revision_name"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td style="border: none;">
+
+                                Date
+
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.date_order" t-field-options='{"format":"dd-MMM-yyyy"}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;width:35%;">
+
+                                Customer Organization Name
+
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.partner_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+
+                                Kind Attention
+
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.concern_person.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+
+                                Sunfire Account Mananger
+
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.user_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+
+                                Sunfire Pre-sales Engaged
+
+                            </td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong t-field="doc.pre_sale_engaged"/>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <t t-raw="0" />
+        </div>
+
+        <div class="footer o_boxed_footer" style="padding-top: 10px !important;padding-bottom: 20px !important;">
+            <div class="text-center">
+                <ul class="list-inline">
+                    <li t-if="doc.company_id.phone">
+                        Tel:
+                        <span t-field="doc.company_id.phone"/>
+                    </li>
+                    <li t-if="doc.company_id.email">
+                        Mail:
+                        <span t-field="doc.company_id.email"/>
+                    </li>
+                    <li t-if="doc.company_id.website">
+                        Web:
+                        <span t-field="doc.company_id.website"/>
+                    </li>
+
+                </ul>
+                <div t-field="doc.company_id.report_footer"/>
+                <div>
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

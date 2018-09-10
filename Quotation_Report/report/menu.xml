@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_saleorderwith"
+           string="Quotation with Unit Rate"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="Quotation_Report.report_with_saleorder" 
+            name="Quotation_Report.report_with_saleorder"
+            print_report_name="('Quotation-%s%s' % (object.name,object.revision_name))"
+        />
+        
+        
+
+        <report
+            id="action_report_Opf"
+            string="OPF Print"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="Quotation_Report.report_saleorder_opf"
+            name="Quotation_Report.report_saleorder_opf"
+            print_report_name="('OPF No - %s' % (object.opf_name))"
+        />
+    </data>
+</odoo>

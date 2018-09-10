@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- model.name inherit form view -->
+    <record id="account_inovice_form_inherite" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <!-- ADD HAN_CODE Invoice line order  29/06/18--> 
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='name']" position="after" groups="base.group_user">
+                <field name="l10n_in_hsn_code" style="min-width: 92px;" />
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='product_id']" position="replace">
+                <field name="product_id" domain="[('sale_ok','=',True)]" readonly="1"/>
+            </xpath> 
+            <!-- Add button for send invoice entry to tally 20/07/18 
+            <xpath expr="//button[@name='action_invoice_draft']" position="after">               
+                <button name="send_tally" type="object" string="Send to tally" attrs="{'invisible':['|',('sent','=',True), ('state', 'not in', ('open','paid'))]}" groups="account.group_account_invoice"/>               
+            </xpath>  -->
+            <xpath expr="//page[@name='other_info']" position="after">
+                <page string="E-Way Bill Details">
+                    <group string="Transportation Details">
+                        <group name="invoice_person">
+                            <field name='transmode' string="Transport Mode" />
+                            <field name='vehicletype' string="Vehicle Type" attrs="{'required': ['|',('transmode','in',('1'))]}" />
+                            <field name='vehicleno' attrs="{'required': ['|',('transmode','in',('1'))]}" />  
+                            <field name='transdistance' />                             
+                        </group>
+                        <group>
+                            <field name='transportername' />
+                            <field name='transporterid' attrs="{'required': ['|',('transmode','in',('1'))]}" /> 
+                            <field name='transdocno' attrs="{'required': ['|',('transmode','in',('2','3','4'))]}"/>
+                            <field name='transdocdate' attrs="{'required': ['|',('transmode','in',('2','3','4'))]}"/>                                                                          
+                        </group>
+                    </group>            
+                </page>
+            </xpath>
+        </field> 
+    </record> 
+</odoo>

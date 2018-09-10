@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--===================Security Group Access Rights===================-->
+	<data noupdate="0">
+		<!-- =================Main Users======================================-->
+		<record id="sale_test_main_user" model="ir.module.category">
+			<field name="name">Users</field>
+			<field name="sequence">1</field>
+		</record>
+		<!--====================Buttons Access Rights=========================-->
+		<!--=================Cancel,Lock,Done,Delivery,Invoice buttons Access Group============-->
+		<record id="sale_button_user" model="res.groups">
+			<field name="name">Enable Header Buttons </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record id="smart_delivery_button_user" model="res.groups">
+			<field name="name">Enable Delivery Smart Button </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+
+		<record id="smart_invoices_button_user" model="res.groups">
+			<field name="name">Enable Invoices Smart Button </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--=============Create Invoice Group Access Group===================-->
+		<record id="sale_create_invoice_button_user" model="res.groups">
+			<field name="name">Enable Create Invoice</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--============Create Button Access Group===========================-->
+		<record id="create_button_user" model="res.groups">
+			<field name="name">Disable Create Access</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--============Duplicate Button Access Group========================-->
+		<record id="duplicate_button_user" model="res.groups">
+			<field name="name">Disable Duplicate Access </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--============Edit Button Access Group=============================-->
+		<record id="edit_button_user" model="res.groups">
+			<field name="name">Disable Edit Access </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--============Delete Button Access Group==========================-->
+		<record id="delete_button_user" model="res.groups">
+			<field name="name">Disable Delete Access </field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<!--=========== Invoice Order Action Button Access Group============-->
+		<record id="invoice_access" model="res.groups">
+			<field name="name">Enable Invoice Order Access</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record id="sale.action_view_sale_advance_payment_inv" model="ir.actions.act_window">
+			<field name="groups_id" eval="[(6,0,[ref('invoice_access')])]"/>
+		</record>
+
+		<!--===================Top Menu Access Groups======================-->
+		<!--Sales Main Menu Group-->
+		<record id="sale_menu_user" model="res.groups">
+			<field name="name">Enable Sales Main Menu</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record model="ir.ui.menu" id="sale.sale_menu_root">
+			<field name="groups_id" eval="[(6,0,[ref('sale_menu_user')])]"/>
+		</record>
+
+		<!--Purchases Main Menu Group-->
+		<record id="purchase_menu_user" model="res.groups">
+			<field name="name">Enable Purchase Main Menu</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record model="ir.ui.menu" id="purchase.menu_purchase_root">
+			<field name="groups_id" eval="[(6,0,[ref('purchase_menu_user')])]"/>
+		</record>
+
+		<!--Invoicing Main Menu Group-->
+		<record id="invoice_menu_user" model="res.groups">
+			<field name="name">Enable Invoicing Main Menu</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record model="ir.ui.menu" id="account.menu_finance">
+			<field name="groups_id" eval="[(6,0,[ref('invoice_menu_user')])]"/>
+		</record>
+
+		<!--CRM Main Menu Group-->
+		<record id="crm_menu_user" model="res.groups">
+			<field name="name">Enable CRM Main Menu</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+		<record model="ir.ui.menu" id="crm.crm_menu_root">
+			<field name="groups_id" eval="[(6,0,[ref('crm_menu_user')])]"/>
+		</record>
+
+		<!--Master Main Menu Group-->
+		<record id="master_menu_user" model="res.groups">
+			<field name="name">Enable Master Main Menu</field>
+			<field name="category_id" ref="sale_test_main_user"/>
+		</record>
+
+		<!--=================Hide from Admin/Users Access Group==============-->
+		<record id="make_invisible" model="res.groups">
+			<field name="name">Enable Options</field>
+		</record>
+		<!--Hide Invoicing Left Menu From order Main Menu from sale menu root-->
+		<record model="ir.ui.menu" id="sale.sale_order_menu">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!--Hide Invoicing Left Menu From Sale Main Menu-->
+		<record model="ir.ui.menu" id="sale.menu_sale_invoicing">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!--Hide Catalog Left Menu From Sale Main Menu-->
+		<record model="ir.ui.menu" id="sale.product_menu_catalog">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!--Hide Products Left Menu From Purchases Main Menu-->
+		<record model="ir.ui.menu" id="purchase.menu_procurement_partner_contact_form">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!--Hide Product Variants Left Menu From Purchases Main Menu-->
+		<record model="ir.ui.menu" id="purchase.product_product_menu">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!--Inventory Main Menu Invisible-->
+		<record model="ir.ui.menu" id="stock.menu_stock_root">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!-- Dashboard Menu Invisible-->
+		<record model="ir.ui.menu" id="web_settings_dashboard.web_dashboard_menu">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!-- Customers Menu Invisible-->
+		<record model="ir.ui.menu" id="sale.res_partner_menu">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!-- Link Tracker Menu Invisible-->
+		<record model="ir.ui.menu" id="utm.menu_link_tracker_root">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+		<!-- =========================Print ==>"Report Invisibles" ============-->
+
+		<!--Print ====> Report "Invoices"-->
+		<record id="account.account_invoices" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--Print ====> Report "Invoices without Payment"-->
+		<record id="account.account_invoices_without_payment" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--Print ====> Report "Purchase Order"-->
+		<record id="purchase.action_report_purchase_order" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--Print ====> Report "Request for Quotation"-->
+		<record id="purchase.report_purchase_quotation" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--Print ====> Report "Sale Order"-->
+		<record id="sale.action_report_saleorder" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--Print ====> Report "PRO-FORMA Invoice"-->
+		<record id="sale.action_report_pro_forma_invoice" model="ir.actions.report">
+			<field name="groups_id" eval="[(6,0,[ref('make_invisible')])]"/>
+		</record>
+
+		<!--=========================Menu Items Changes====================================-->
+
+		<!--CRM Menu Customer Sequence Change-->
+		<menuitem id="crm.res_partner_menu_crm" name="Customers" parent="crm.crm_menu_root" sequence="0" />
+	</data>
+</odoo>

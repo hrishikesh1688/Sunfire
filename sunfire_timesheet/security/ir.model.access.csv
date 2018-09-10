@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"sunfire_timesheet_admin","Model Admin access","model_sunfire_timesheet","sunfire_timesheet.group_manager",1,1,1,1
+"sunfire_timesheet_user","Model User Access ","model_sunfire_timesheet","sunfire_timesheet.group_user",1,1,1,0
+"sunfire_timesheet_line_admin","line Admin access","model_sunfire_timesheet_line","sunfire_timesheet.group_manager",1,1,1,1
+"sunfire_timesheet_line_user","line User Access ","model_sunfire_timesheet_line","sunfire_timesheet.group_user",1,1,1,0
