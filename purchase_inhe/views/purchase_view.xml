@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="purchase_order_line_search_inhe" model="ir.ui.view">
+        <field name="name">purchase.order.line.search</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+           <xpath expr="//search" position="inside">
+                <!-- This field will show up on the quick search -->
+                <field name="origin"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="purchase_order_form_inherite_123" model="ir.ui.view">
+          <field name="name">purchase.order.form</field>
+          <field name="model">purchase.order</field>
+          <field name="inherit_id" ref="purchase.purchase_order_form"/> 
+            <field name="arch" type="xml">
+                <data>                    
+                    <!--Pradeep code merge ADD partner_invoice_id,partner_shipping_id on PO form  20/08/18--> 
+                    <xpath expr="//field[@name='partner_id']" position="replace">     
+                        <!-- <field name="partner_id" context="{'search_default_supplier':1, 'default_supplier':1}" 
+		       				domain="[('supplier','=',True),  ('parent_id', '=',False)]" />   -->                               
+                        <field name="partner_id" context="{'search_default_supplier':1, 'show_address': 1,'default_type':'contact'}" 		            	
+                            domain="[('supplier','=',True),  ('parent_id', '=',False)]" />      
+                        <!-- <field name="partner_invoice_id" domain="[('customer','=',0)]"  
+                            options='{"always_reload": True}' /> -->
+                        <field name='partner_invoice_id' domain="[('customer','=',0)]"  
+                            context="{'show_address': 1}" options='{"always_reload": True}' />
+                        <field name='partner_invoice_Add' />
+                        <!-- <field name="partner_shipping_id"   domain="[('customer','=',0)]"  
+                                options='{"always_reload": True}'/> 
+                        <field name="partner_shipping_Add" /> -->
+   			        </xpath>
+                    <!--end-->
+                    <!-- ADD STP(purchase_price) on PO line order and set read only  07/06/18--> 
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="replace">
+                        <field name="price_unit" invisible="1" />
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='company_id']" position="replace">
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" invisible="1"/>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="before">
+                        <field name="purchase_price" groups="base.group_user"/>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="before">
+                        <field name="layout_category_id" string="Product Heading" style="min-width: 98px;" />
+                        <field name="saleorder_line_id" invisible='1' />
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="after">
+                        <field name="desc_name" readonly="1"/>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="replace">
+                        <field name="name" invisible="1" />
+                    </xpath>
+                    <!-- merge Jeevan code Start--> 
+                    <xpath expr="//field[@name='date_approve']" position="after">
+                        <field name='delivery_period' options="{'no_quick_create':True,'no_create_edit':True}"/>
+                        <field name="warranty" options="{'no_quick_create':False,'no_create_edit':True}"/>
+                        <field name="lead_name" options="{'no_quick_create':False,'no_create_edit':True}"/>
+                        <field name="tax_grp"/>
+                    </xpath>
+                    <!--End-->
+                    <xpath expr="//field[@name='notes']" position="replace">
+                        <field name="notes" class="oe_inline" placeholder="Define your Note or Remark"/>
+        	        </xpath>
+
+                    <xpath expr="//field[@name='company_id']" position="after">
+                        <field name='po_detail_address' options="{'no_quick_create':True,'no_create_edit':True}"/>
+                        <field name='po_to_be_placed'  options="{'no_quick_create':True,'no_create_edit':True}"/>                        
+                        <field name="other_address_check" />
+                        <field name="other_address" attrs="{'readonly':[('other_address_check','=',False)]}"/>
+                    </xpath>
+
+                    <xpath expr="//div[@name='button_box']" position="attributes">
+           		        <attribute name="invisible">1</attribute>
+        	        </xpath>
+
+                    <xpath expr="//field[@name='taxes_id'][1]" position='replace'>
+                        <field name="taxes_id" invisible='1' widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}" options="{'no_create': True}"/>
+                    </xpath>
+                    <xpath expr="//group[@class='oe_subtotal_footer oe_right']" position ="replace">
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="my_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="margin" style="min-width: 92px;"/>
+                            <field name="my_discount" style="min-width: 92px;"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </xpath>
+    
+                </data>
+            </field>
+    </record> 
+
+    
+    <record id="action_sale_order_state_done" model="ir.actions.act_window">
+            <field name="name">Approved OPFs.</field>
+             <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree</field>
+            <field name="domain">[('state','=','done')]</field>
+    </record>
+    <menuitem action="action_sale_order_state_done" id="new_menu_purchase_rfq"
+        name="Approved OPFs." parent="purchase.menu_procurement_management"
+        sequence="-1"/>
+    <!-- Supplier menu -->
+    <menuitem id="purchase.menu_procurement_management_supplier_name" name="Supplier Master"
+        parent="purchase.menu_procurement_management"
+        action="base.action_partner_supplier_form" sequence="15"/> 
+
+    <!-- Change Menu Name 12/07/2018-->   
+    <record id="purchase_rfq" model="ir.actions.act_window">
+        <field name="name">Draft Purchase Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.order</field>
+        <field name="context">{'search_default_todo':1, 'show_purchase': False}</field>
+        <field name="domain">[('state','in',('draft','sent','bid','cancel', 'confirmed'))]</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+        <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Click to create a request for quotation.
+            </p><p>
+            The quotation contains the history of the discussion/negotiation
+            you had with your vendor. Once confirmed, a request for
+            quotation is converted into a purchase order.
+            </p><p>
+            Most propositions of purchase orders are created automatically
+            by Odoo based on inventory needs.
+            </p>
+        </field>
+    </record>
+    <menuitem action="purchase_rfq" id="purchase.menu_purchase_rfq"
+        parent="purchase.menu_procurement_management"
+        sequence="0"/>
+    
+    <record id="purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Order Loaded</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="context">{'search_default_todo':1, 'show_purchase': True}</field>
+            <field name="domain">[('state','not in',('draft','sent','bid', 'confirmed'))]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a quotation that will be converted into a purchase order. 
+              </p><p>
+                Use this menu to search within your purchase orders by
+                references, vendor, products, etc. For each purchase order,
+                you can track the related discussion with the vendor, control
+                the products received and control the vendor bills.
+              </p>
+            </field>
+    </record>
+    <menuitem action="purchase_form_action" id="purchase.menu_purchase_form_action" parent="purchase.menu_procurement_management" sequence="6"/>
+
+</odoo>

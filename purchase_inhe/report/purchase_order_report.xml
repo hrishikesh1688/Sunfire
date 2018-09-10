@@ -1,0 +1,237 @@
+<openerp>
+    <data>
+		
+        <!-- Inherit quotation report (from module sale) -->
+        <template id="report_purchase_inherit_demo" inherit_id="purchase.report_purchaseorder_document">
+	    <!-- Finds the first table with as class table table-condensed and gives the ability to modify it
+		 This will replace everything withing tr (including tr)-->
+            <xpath expr="//table[@class='table table-condensed']//thead//tr" position="before">
+                    <div class="row mt32 mb32" style="margin-left: 3px;">		
+                        <div>
+                            <strong> <b> Kind Attn: </b></strong>
+                            <strong> <b> Adarsh Jain</b></strong>
+                        </div>
+                        <div>
+                            <strong> <b> With reference to your quotation,we are pleased to place order as per instructions given in this order.</b></strong>
+                        </div>
+                    </div>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[2]" position="replace">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                    <div class="col-xs-6">
+                    <strong>Order Details</strong>
+                        <div>
+                            Purchase No.
+                            <strong t-field="o.name"></strong>
+                        </div>
+                        <div> 
+                            Po Date:-
+                            <strong t-field="o.warranty"></strong>
+                        </div>
+                        <div> 
+                            OPF No.
+                                <table style="border: none;">
+                                <tbody>
+                                <tr t-foreach="o.order_line" t-as="line">
+                                    
+                                <td style="border: none;background-color:white;">
+                                    <span t-field="line.saleorder_line_id.order_id.name"/>
+
+                                </td>
+                                </tr>
+                                </tbody>
+                                </table> 
+                        </div>
+                    </div>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[3]" position="replace">
+            </xpath>
+            <!-- <xpath expr="//div[@id='div1']" position="after"> -->
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]" position="after">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                    <center>
+                        <div>
+                            <b>
+                                Terms &amp; Conditions
+                            </b>
+                        </div>
+                    </center>
+                    <table style="border: none;">
+                        <tr>
+                            <td style="border: none;"><strong ><b>Tax</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong>Extra As Applicable</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong ><b>Delivery Period</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong >Not Applicable</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong><b>Warrantly</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong>Not Applicable</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong><b>Payment Terms</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;"> 
+                                <strong t-field="o.notes"></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong ><b>Shipping Address</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong > Ex warehouse Mumbai</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong ><b>Billing Address</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;">
+                                <strong>401-403, 4th Floor, Yash Elina, Lane opp Karishma Society,Off Karve Road, Kothrud,Pune</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><strong ><b>Note::</b></strong></td>
+                            <td style="border: none;width:2%;">:</td>
+                            <td style="border: none;background-color:white;width:80%;"></td>
+                        </tr>
+                    </table>
+
+                    <!-- <div>
+                        <strong ><b>Tax:</b></strong>
+                        <strong style="padding: 11%;">Extra As Applicable</strong>
+                    </div> 
+                    <div>
+                        <strong ><b>Delivery Period:</b></strong>
+                        <strong style="padding: 5%;">Immediate</strong>
+                    </div>
+                    <div>
+                        <strong><b>Warrantly:</b></strong>
+                        <strong style="padding: 7%;">Not Applicable</strong>
+                    </div>
+                    <div>
+                        <strong><b>Payment Terms:</b></strong>
+                        <strong style="padding: 5%;" t-field="o.notes"></strong>
+                    </div>
+                    <div name="payment_term">
+                        <strong ><b>Shipping Address:</b></strong>
+                        <strong style="padding: 4%;"> Ex warehouse Mumbai</strong>
+                    </div>
+                    <div>
+                        <strong ><b>Billing Address:</b></strong>
+                        <strong style="padding: 5%;">401-403, 4th Floor, Yash Elina, Lane opp Karishma Society,Off Karve Road, Kothrud,Pune</strong>
+                    </div>
+                    <div>
+                        <strong ><b>Note::</b></strong>
+                        <strong style="padding: 62px;" t-field="doc.installation_terms" ></strong> 
+                        <strong style="padding: 62px;">OTI Not Applicable</strong> 
+                    </div>-->
+                <br/>
+                <table style="border: none;">
+                    <tr>
+                        <td style="border: none;">1. If part delivery is made, then the date of the final delivery of all items will be
+                            considered for payment terms.</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;width:15%;"></td>    
+                        <td style="border: none;background-color:white;"></td>
+                        <td style="border: none;background-color:white;">Order Prepared By</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">2. This order is to be treated as cancelled if deliveries should be extended
+                                beyond/or prices increased <br/> without our prior sanction.Material received there after 
+                                will be stored at your risk and cost.</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;width:15%;"></td>        
+                        <td style="border: none;background-color:white;"></td>
+                        <td style="border: none;background-color:white;"><strong t-field="o.create_uid"></strong></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">3. Bill to And Ship to address as mentioned above.</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;width:15%;"></td>
+                        <td style="border: none;background-color:white;"></td>
+                        <td style="border: none;background-color:white;"></td>
+                    </tr>
+                               
+                    <tr>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;width:15%;"></td>
+                        <td style="border: none;background-color:white;"></td>
+                        <td style="border: none;background-color:white;">Authorised Signatory</td>
+                    </tr>
+                </table>
+                <!-- <div class="row">
+                    <div class="col-sm-6 col-xs-6">
+                        <div>1. If part delivery is made, then the date of the final delivery of all items will be
+                            considered for payment terms.</div>
+                        <div>2. This order is to be treated as cancelled if deliveries should be extended
+                                beyond/or prices increased without <br/>our prior sanction.Material received there after 
+                                will be stored at your risk and cost.</div>
+                        <div>3. Bill to And Ship to address as mentioned above.</div>
+                        <div></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                        <div>Order Prepared By</div>
+                        <div><strong t-field="o.create_uid"> </strong>
+                        <strong style="background-color:Red;"> </strong></div>
+                        <div><br/><br/><br/><br/></div>
+                        <div><strong>Authorised Signatory </strong></div>
+                    </div>
+                </div>         -->
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[3]" position="replace" >
+                <div class="row">
+                    <div class="col-xs-4 pull-right">
+                        <table class="table table-condensed">
+                            <tr class="border-black">
+                                <td><strong>Subtotal</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr class="border-black" t-if="o.margin !=0.00 ">
+                                <td><strong>Margin</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.margin"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr class="border-black" t-if="o.my_discount !=0.00 " >
+                                <td><strong>Discount</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.my_discount"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-black">Taxes</td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_tax"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr class="border-black">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>

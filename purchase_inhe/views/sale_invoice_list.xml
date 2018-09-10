@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_sale_order_invoice" model="ir.actions.act_window">
+            <field name="name">Sale order Invoice</field>
+             <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('state','=','done'),('invoice_status','=','to invoice')]</field>
+    </record>
+    <menuitem action="action_sale_order_invoice" id="new_menu_sale_Invoice_rfq"
+        name="Sales Order Invoice" parent="account.menu_finance_receivables_documents"
+        sequence="-1"/>
+</odoo>

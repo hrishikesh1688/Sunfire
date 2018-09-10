@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+		
+        <!-- Inherit quotation report (from module sale) -->
+        <template id="report_purchase_inherit_demo" inherit_id="report.external_layout_header">
+	    <!-- Finds the first table with as class table table-condensed and gives the ability to modify it
+		 This will replace everything withing tr (including tr)-->
+		<xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <strong><p>Hello Remove Header</p></strong>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>
