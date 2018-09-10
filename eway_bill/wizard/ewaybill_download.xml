@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="wizard_excel_report" model="ir.ui.view">
+            <field name="name">ewaybill.json.report.view</field>
+            <field name="model">ewaybill.json.report</field>
+            <field name="arch" type="xml">
+                <form string="Eway Bill">
+                    <group class="oe_inline">
+                        <!-- <label string="File Name"/> -->
+                        <field name="name"  />
+                        <field name="report" filename="name" style="min-width: 200px;" />
+                    </group>
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

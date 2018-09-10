@@ -1,0 +1,59 @@
+{
+    "billLists": [
+        {
+            "actualFromStateCode": "27",
+            "actualtoStateCode": "27",
+            "cessValue": 0.0,
+            "cgstValue": 4077.0,
+            "docDate": "05/07/2018",
+            "docNo": "07/001/18-19",
+            "docType": "INV",
+            "fromAddr1": "401-403, 4th Floor, Yash Elina, Lane opp Karishma Society",
+            "fromAddr2": "Off Karve Road, Kothrud",
+            "fromGstin": "27AALCS3803R1ZP",
+            "fromPincode": "411038",
+            "fromPlace": "Pune",
+            "fromStateCode": "27",
+            "fromTrdName": "Sunfire Technologies Pvt. Ltd.",
+            "igstValue": 0,
+            "itemList": [
+                {
+                    "cessRate": 0,
+                    "cgstRate": 9.0,
+                    "hsnCode": "534277",
+                    "igstRate": 0.0,
+                    "itemNo": 0,
+                    "productDesc": false,
+                    "productName": "New Prod2",
+                    "qtyUnit": "No(s)",
+                    "quantity": 10.0,
+                    "sgstRate": 9.0,
+                    "taxableAmount": 8154.0
+                }
+            ],
+            "mainHsnCode": 6568562223,
+            "sgstValue": 4077.0,
+            "subSupplyType": "1",
+            "supplyType": "I",
+            "toAddr1": "Plot No. 39, Phase I, Rajiv Gandhi Information Tec",
+            "toAddr2": "False",
+            "toGstin": "False",
+            "toPincode": "411057",
+            "toPlace": "Pune",
+            "toStateCode": "27",
+            "toTrdName": "Persistent Systems Limited",
+            "totInvValue": "53454.0",
+            "totalValue": "45300.0",
+            "transDistance": 1200.0,
+            "transDocDate": "05/07/2018",
+            "transDocNo": "2343",
+            "transMode": "1",
+            "transporterId": "3AGG43634355",
+            "transporterName": "Ambuja",
+            "userGstin": "27AALCS3803R1ZP",
+            "vehicleNo": "5441",
+            "vehicleType": "R"
+        }
+    ],
+    "version": "1.0.0618"
+}

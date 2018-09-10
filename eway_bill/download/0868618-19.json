@@ -1,0 +1,59 @@
+{
+    "billLists": [
+        {
+            "actualFromStateCode": "27",
+            "actualtoStateCode": "27",
+            "cessValue": 0.0,
+            "cgstValue": 18899.97,
+            "docDate": "21/08/2018",
+            "docNo": "08/686/18-19",
+            "docType": "INV",
+            "fromAddr1": "401-403, 4th Floor, Yash Elina, Above Nagpur Nagari Sahakari Bank, Behind Maruti Mandir,",
+            "fromAddr2": "Off Karve Road",
+            "fromGstin": "27AALCS3803R1ZP",
+            "fromPincode": "411038",
+            "fromPlace": "Pune",
+            "fromStateCode": "27",
+            "fromTrdName": "Sunfire Technologies Pvt. Ltd.",
+            "igstValue": 0,
+            "itemList": [
+                {
+                    "cessRate": 0,
+                    "cgstRate": 9.0,
+                    "hsnCode": "998313",
+                    "igstRate": 0.0,
+                    "itemNo": 0,
+                    "productDesc": false,
+                    "productName": "NA",
+                    "qtyUnit": "No(s)",
+                    "quantity": 90.0,
+                    "sgstRate": 9.0,
+                    "taxableAmount": 37799.94
+                }
+            ],
+            "mainHsnCode": 6568562223,
+            "sgstValue": 18899.97,
+            "subSupplyType": "1",
+            "supplyType": "I",
+            "toAddr1": "Suryakant Rai, 247 Park, 8th flr, A wing, LBS Marg , Vikroli west, ",
+            "toAddr2": "Mumbai,",
+            "toGstin": "27AAACO2461J1ZG",
+            "toPincode": "400079 ",
+            "toPlace": "Mumbai",
+            "toStateCode": "27",
+            "toTrdName": "Atos India Private Limited",
+            "totInvValue": "247799.64",
+            "totalValue": "209999.7",
+            "transDistance": 1200.0,
+            "transDocDate": "21/08/2018",
+            "transDocNo": "2343",
+            "transMode": "1",
+            "transporterId": "3AGG43634355",
+            "transporterName": "Ambuja",
+            "userGstin": "27AALCS3803R1ZP",
+            "vehicleNo": "5441",
+            "vehicleType": "R"
+        }
+    ],
+    "version": "1.0.0618"
+}

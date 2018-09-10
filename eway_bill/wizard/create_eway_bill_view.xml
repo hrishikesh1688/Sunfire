@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <!-- <templatete xml:space="preserve">
+            <t t-name="DocumentViewer1"> -->
+        <!-- <script>
+            $(document).ready(function(){
+                var controller_url = ...
+                $("#pdf_download_link").attr("href", controller_url);
+            });
+        </script> -->
+        <record id="create_eway_bill_wizard" model="ir.ui.view">
+            <field name="name">create.eway.bill.wiz.view</field>
+            <field name="model">create.eway.bill</field>
+            <field name="arch" type="xml">
+                <form string="Eway Bill">
+                    <group>
+                        <h3>
+                            <label string="You are going to create E-Way Bill"/>
+                        </h3>
+                    </group>
+                    <footer>
+
+                        <button name="eway_bill_generate" string="Create Json" type="object" class="oe_highlight o_download_btn">
+                        </button>
+
+                        <!-- <a class="o_form_uri o_field_widget o_readonly_modifier"
+                        href="javascript:void(0)" name="file_content" style="cursor: pointer;">
+                        <span class="fa fa-download"></span> jsondata.json</a> -->
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!-- <record id="wizard_excel_report" model="ir.ui.view">
+            <field name="name">ewaybill.json.report.view</field>
+            <field name="model">ewaybill.json.report</field>
+            <field name="arch" type="xml">
+                <form string="Eway Bill">
+                    <group class="oe_inline">
+                        <field name="name"  />
+                        <field name="report" filename="name" style="min-width: 200px;" />
+                    </group>
+
+                </form>
+            </field>
+        </record> -->
+
+
+
+
+        <!-- </t>
+        </templatete> -->
+        <act_window
+            id="action_create_eway_bill"
+            name="Generate Eway Bill"
+            res_model="create.eway.bill"
+            src_model="account.invoice"
+            target="new"
+            view_type="form"
+            view_mode="form"
+            key2="client_action_multi"/>
+
+    </data>
+</odoo>
